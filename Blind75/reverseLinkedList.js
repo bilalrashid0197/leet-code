@@ -15,11 +15,10 @@ var reverseList = function(head) {
 	let currentPointer = head; // This returns the current value we have
 	while(currentPointer != null){ 
 		let nextPointer = currentPointer.next; // The next listNode that the currentPoitner links too
-		
-    // Change the node memory address to the previousPointer.
-    currentPointer.next = previousPointer // In this first case it would be null then after it would point too the different node reversed.
-		previousPointer = currentPointer // Update previousPointer too be set to currentPointer
-		currentPointer = nextPointer // Set currentPointer too be nextPointer
+    		// Change the node memory address to the previousPointer.
+    		currentPointer.next = previousPointer; // In this first case it would be null then after it would point too the different node reversed.
+		previousPointer = currentPointer; // Update previousPointer too be set to currentPointer
+		currentPointer = nextPointer; // Set currentPointer too be nextPointer
 	}
-	return previousPointer // Return the head of the linked-list.
+	return previousPointer; // Return the head of the linked-list.
 };
