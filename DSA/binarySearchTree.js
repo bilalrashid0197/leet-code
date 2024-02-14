@@ -1,40 +1,93 @@
-class Node {
-    constructor(val) {
-        this.val = val; // Assign the value passed by the user as the root
-        this.left = null; // Set the left value to null
-        this.right = null; // Set the right value to null
-    }
+class Node{
+	constructor(val){
+		this.val = val;
+		this.left = null;
+		this.right = null;
+	}
 }
 
-class BST {
-    constructor() {
-        this.root = null; // Construct the binary search tree without any values
-    }
 
-    insert(val) {
-        const newNode = new Node(val); // Create the new node to be added
+class BST{
+	constructor(){
+		this.root = null;
+	}
 
-        if (this.root === null) { // If the root of the BST is null we can add the current node as the root of the binary search tree
-            this.root = newNode;
-        } else {
-            this.insertNode(this.root, newNode); // Call another function to find out where to add the value.
-        }
-    }
+	// Depth-First Search
+	depthFirstSearch(root=this.root){
+		let outputArray = [];
+		//this.inorder(root, outputArray); 
+		//this.preorder(root, outputArray);
+		//this.postorder(root, outputArray);
+		return outputArray;
+	}
 
-    // Helper function for the insert function
-    insertNode(currentNode, newNode) {
-        if (currentNode.val > newNode.val) { // If the value of the current node is greater than the node to be added move left
-            if (currentNode.left === null) { // If the subtree on the left side is null
-                currentNode.left = newNode; // Assign the whole subtree
-            } else {
-                this.insertNode(currentNode.left, newNode); // Recursively call the function to the left subtree
-            }
-        } else { // If the value of the newNode is bigger then the value of the current node move right
-            if (currentNode.right === null) { // If the subtree on the right side is null
-                currentNode.right = newNode; // Assign the whole subtree
-            } else {
-                this.insertNode(currentNode.right, newNode); // Recursively call the function to the right subtree
-            }
-        }
-    }
+	// Inorder traversal method: left subtree -> root -> right subtree
+	inorder(root, array){
+	    // If the current node is not null, proceed with the traversal
+	    if(root !== null){ 
+	        // Recursively traverse the left subtree
+	        this.inorder(root.left, array); 
+	        // Visit the current node (push its value to the array)
+	        array.push(root.val);
+	        // Recursively traverse the right subtree
+	        this.inorder(root.right, array);
+	    }
+	    // When the node is null, the function returns implicitly, backtracking to the previous node.
+	}
+
+	// Preorder traversal method: root -> left subtree -> right subtree
+	preorder(root, array){
+	    // If the current node is not null, proceed with the traversal
+	    if(root !== null){ 
+	        // Visit the current node (push its value to the array)
+	        array.push(root.val);
+	        // Recursively traverse the left subtree
+	        this.preorder(root.left, array);
+	        // Recursively traverse the right subtree
+	        this.preorder(root.right, array); 
+	    }
+	    // When the node is null, the function returns implicitly, backtracking to the previous node.
+	}
+
+	// Postorder traversal method: left subtree -> root -> right subtree
+	postorder(root, array){
+	    // If the current node is not null, proceed with the traversal
+	    if(root !== null){ 
+	        // Recursively traverse the left subtree
+	        this.postorder(root.left, array); 
+	        // Recursively traverse the right subtree
+	        this.postorder(root.right, array); 
+	        // Visit the current node (push its value to the array)
+	        array.push(root.val);
+	    }
+	    // When the node is null, the function returns implicitly, backtracking to the previous node.
+	}
+
+	// Inserting a value
+	insertNode(val){
+		const nodeToAdd = new Node(val) // Create the new node that needs to be added
+		if(this.root === null){
+			this.root = nodeToAdd;
+		} else {
+			this.addNode(this.root, nodeToAdd)
+		}
+	}
+
+	// Helper function for insertNode
+	addNode(currentNode, newNode){
+		if(currentNode.val > newNode.val){ // If the value is greater - move left
+ 			if(currentNode.left === null){
+ 				currentNode.left = newNode;
+ 			} else {
+ 				this.addNode(currentNode.left, newNode);
+ 			}
+		} else { // Else move right
+			if(currentNode.right === null){
+				currentNode.right = newNode
+			} else {
+				this.addNode(currentNode.right, newNode)
+			}
+		}
+	}
+	// Add delete a certain node, BFS	
 }
