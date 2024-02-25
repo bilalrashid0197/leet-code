@@ -19,7 +19,7 @@ var isSameTree = function(p, q) {
         return true;
     }
 
-    // If one of the trees is empty and the other is not, they are the same
+    // If one of the trees is empty and the other is not, they are not the same
     if(p === null || q === null){
         return false;
     }
