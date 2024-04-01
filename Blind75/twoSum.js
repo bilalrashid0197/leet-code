@@ -35,5 +35,5 @@ var twoSum = function(nums, target) {
             return [diffAndIndexDict[difference], i];
         }
     }
-    
 };
+
