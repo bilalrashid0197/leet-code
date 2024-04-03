@@ -19,3 +19,30 @@ var longestConsecutive = function(nums) {
     };
     return longest;
 };
+
+// Solution 2:
+    // Time: O(n log n)
+    // Space: O(1)
+/**
+ * @param {number[]} numd
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+    if(nums.length === 0){
+        return 0;
+    }
+    nums.sort((a,b) => a-b);
+    let currentLength = 1;
+    let longestLength = 1;
+    for(let i = 1; nums.length > i; i++){
+        if(nums[i] !== nums[i-1]){
+            if(nums[i] === nums[i-1] + 1){
+                currentLength += 1;
+            } else {
+                longestLength = Math.max(currentLength, longestLength);
+                currentLength = 1;
+            }
+        }
+    }
+    return Math.max(longestLength, currentLength);
+};
